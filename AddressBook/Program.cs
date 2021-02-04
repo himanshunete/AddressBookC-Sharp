@@ -17,7 +17,6 @@ namespace AddressBook
         public int phoneNumber2;
         public string email;
 
-
         public ContactDetails(string firstName, string lastName, string address, string city, string state, int zip, int phoneNumber1, int phoneNumber2, string email)
         {
             this.firstName = firstName;
