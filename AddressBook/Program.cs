@@ -65,21 +65,7 @@ namespace AddressBook
 
         static void Main(string[] args)
         {
-            Program details = new Program();
-            for (int numOfPerson = 1; numOfPerson < 4; numOfPerson++)
-            {
-                string firstName = Console.ReadLine();
-                string lastName = Console.ReadLine();
-                string address = Console.ReadLine();
-                string city = Console.ReadLine();
-                string state = Console.ReadLine();
-                int zip = Convert.ToInt32(Console.ReadLine());
-                int phoneNumber1 = Convert.ToInt32(Console.ReadLine());
-                int phoneNumber2 = Convert.ToInt32(Console.ReadLine());
-                string email = Console.ReadLine();
-                details.AddDetails(firstName, lastName, address, city, state, zip, phoneNumber1, phoneNumber2, email);
-            }
-            details.ComputeDetails();
+            Console.WriteLine(" Welcome to Address Book System ");
         }
 
 
