@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AddressBook
 {
@@ -38,28 +41,32 @@ namespace AddressBook
         }
     }
 
+    //Computation
     class Program
     {
         private int numOfPerson = 0;
-        private ContactDetails[] contactDetails;
+        private ArrayList contactDetailsList ;
+        private Dictionary<string, ContactDetails> contactDetailsMap;
         public Program()
         {
-            contactDetails = new ContactDetails[5];
+            contactDetailsList = new ArrayList();
+            contactDetailsMap = new Dictionary<string, ContactDetails>() ;
         }
 
 
         public void AddDetails(string firstName, string LastName, string address, string city, string state, int zip, int phoneNumber1, int phoneNumber2, string email)
         {
-            contactDetails[numOfPerson] = new ContactDetails(firstName, LastName, address, city, state, zip, phoneNumber1, phoneNumber2, email);
-            numOfPerson++;
+            ContactDetails contactDetails = new ContactDetails(firstName, LastName, address, city, state, zip, phoneNumber1, phoneNumber2, email);
+            contactDetailsList.Add(contactDetails);
+            contactDetailsMap.Add(firstName, contactDetails);
         }
 
         public void ComputeDetails()
         {
 
-            for (int i = 0; i < numOfPerson; i++)
+            foreach (ContactDetails contact in contactDetailsList)
             {
-                Console.WriteLine(contactDetails[i].toString());
+                Console.WriteLine(contact.toString());
             }
         }
 
@@ -67,7 +74,9 @@ namespace AddressBook
         {
             Console.WriteLine(" Welcome to Address Book System ");
             Program details = new Program();
-            for (int numOfPerson = 1; numOfPerson < 4; numOfPerson++)
+            int noOfPersons = Convert.ToInt32(Console.ReadLine());
+
+            for (int numOfPerson = 1; numOfPerson < noOfPersons; numOfPerson++)
             {
                 string firstName = Console.ReadLine();
                 string lastName = Console.ReadLine();
