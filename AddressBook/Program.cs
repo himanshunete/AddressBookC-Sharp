@@ -67,6 +67,13 @@ namespace AddressBook
             contactDetailsList[index] = contactDetails;
             contactDetailsMap[firstName] = contactDetails;
         }
+
+        public void DeleteDetails(string firstName)
+        {
+            int index = Convert.ToInt32(Console.ReadLine());
+            contactDetailsList.RemoveAt(index);
+            contactDetailsMap.Remove(firstName);
+        }
         public void ComputeDetails()
         {
             foreach (ContactDetails contact in contactDetailsList)
@@ -95,28 +102,40 @@ namespace AddressBook
                 details.AddDetails(firstName, lastName, address, city, state, zip, phoneNumber1, phoneNumber2, email);
             }
             details.ComputeDetails();
-
-            int noOfEdits = Convert.ToInt32(Console.ReadLine());
+ 
             int option = Convert.ToInt32(Console.ReadLine());
-            if (option == 0)
+            const int EDIT = 0;
+            const int DELETE = 1;
+            switch (option)
             {
-                for (int numOfPerson = 1; numOfPerson < noOfEdits; numOfPerson++)
-                {
-                    string firstName = Console.ReadLine();
-                    string lastName = Console.ReadLine();
-                    string address = Console.ReadLine();
-                    string city = Console.ReadLine();
-                    string state = Console.ReadLine();
-                    int zip = Convert.ToInt32(Console.ReadLine());
-                    int phoneNumber1 = Convert.ToInt32(Console.ReadLine());
-                    int phoneNumber2 = Convert.ToInt32(Console.ReadLine());
-                    string email = Console.ReadLine();
-                    details.EditDetails(firstName, lastName, address, city, state, zip, phoneNumber1, phoneNumber2, email);
-                }
-                details.ComputeDetails();
-
+                case EDIT:
+                    int noOfEdits = Convert.ToInt32(Console.ReadLine());
+                    for (int numOfPerson = 1; numOfPerson < noOfEdits; numOfPerson++)
+                    {
+                        string firstName = Console.ReadLine();
+                        string lastName = Console.ReadLine();
+                        string address = Console.ReadLine();
+                        string city = Console.ReadLine();
+                        string state = Console.ReadLine();
+                        int zip = Convert.ToInt32(Console.ReadLine());
+                        int phoneNumber1 = Convert.ToInt32(Console.ReadLine());
+                        int phoneNumber2 = Convert.ToInt32(Console.ReadLine());
+                        string email = Console.ReadLine();
+                        details.EditDetails(firstName, lastName, address, city, state, zip, phoneNumber1, phoneNumber2, email);
+                    }
+                    details.ComputeDetails();
+                    break;
+                case DELETE:
+                    int noOfDeletes = Convert.ToInt32(Console.ReadLine());
+                    for (int numOfPerson = 1; numOfPerson < noOfDeletes; numOfPerson++)
+                    {
+                        string firstName = Console.ReadLine();
+                        details.DeleteDetails(firstName);
+                    }
+                    details.ComputeDetails();
+                    break;
             }
-            
+
         }
 
 
