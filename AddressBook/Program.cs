@@ -44,7 +44,6 @@ namespace AddressBook
     //Computation
     class Program
     {
-        private int numOfPerson = 0;
         private ArrayList contactDetailsList ;
         private Dictionary<string, ContactDetails> contactDetailsMap;
         public Program()
@@ -61,9 +60,15 @@ namespace AddressBook
             contactDetailsMap.Add(firstName, contactDetails);
         }
 
+        public void EditDetails(string firstName, string LastName, string address, string city, string state, int zip, int phoneNumber1, int phoneNumber2, String email)
+        {
+            ContactDetails contactDetails = new ContactDetails(firstName, LastName, address, city, state, zip, phoneNumber1, phoneNumber2, email);
+            int index = Convert.ToInt32(Console.ReadLine());
+            contactDetailsList[index] = contactDetails;
+            contactDetailsMap[firstName] = contactDetails;
+        }
         public void ComputeDetails()
         {
-
             foreach (ContactDetails contact in contactDetailsList)
             {
                 Console.WriteLine(contact.toString());
@@ -90,6 +95,28 @@ namespace AddressBook
                 details.AddDetails(firstName, lastName, address, city, state, zip, phoneNumber1, phoneNumber2, email);
             }
             details.ComputeDetails();
+
+            int noOfEdits = Convert.ToInt32(Console.ReadLine());
+            int option = Convert.ToInt32(Console.ReadLine());
+            if (option == 0)
+            {
+                for (int numOfPerson = 1; numOfPerson < noOfEdits; numOfPerson++)
+                {
+                    string firstName = Console.ReadLine();
+                    string lastName = Console.ReadLine();
+                    string address = Console.ReadLine();
+                    string city = Console.ReadLine();
+                    string state = Console.ReadLine();
+                    int zip = Convert.ToInt32(Console.ReadLine());
+                    int phoneNumber1 = Convert.ToInt32(Console.ReadLine());
+                    int phoneNumber2 = Convert.ToInt32(Console.ReadLine());
+                    string email = Console.ReadLine();
+                    details.EditDetails(firstName, lastName, address, city, state, zip, phoneNumber1, phoneNumber2, email);
+                }
+                details.ComputeDetails();
+
+            }
+            
         }
 
 
